@@ -36,3 +36,42 @@ Criteria | Percentage
 Implementa los casos 12 casos de uso según las directrices descritas en el problema del reto | 35.0 %
 Implementa el modelo de dominio con los agregados y todos sus comportamientos, comandos, eventos y objetos | 50.0 %
 Implementar pruebas unitarias que cubran todos los casos de uso (100% de cubrimiento) | 15.0 %
+
+
+#Solución
+
+Se plantea una empresa de venta de sistemas solares fotovoltaicos. En esta se tienen los siguientes Subdominios:
+
+<p align="center">
+  <img src="/img/Screenshot_1.png"/>
+</p>
+
+Se analiza el Core de Proyectos:
+
+<p align="center">
+  <img src="/img/Screenshot_2.png"/>
+</p>
+
+Se llega al siguiente modelo de dominio:
+
+<p align="center">
+  <img src="/img/Reto Final DDD-Modelo de dominio.png"/>
+</p>
+
+Eventos de dominio:
+
+* Diseño
+<p align="center">
+  <img src="/img/EventosDeDominioDiseño.png"/>
+</p>
+
+* Cotizacion
+<p align="center">
+  <img src="/img/EventosDeDominioCotizacion.png"/>
+</p>
+
+* Compra
+<p align="center">
+  <img src="/img/EventosDeDominioCompra.png"/>
+</p>
+
