@@ -1,5 +1,6 @@
 package co.com.energiasolar.cotizacion;
 
+import co.com.energiasolar.compra.events.CompraCreada;
 import co.com.energiasolar.cotizacion.events.*;
 import co.com.energiasolar.cotizacion.values.*;
 import co.com.sofka.domain.generic.AggregateEvent;
@@ -16,7 +17,7 @@ public class Cotizacion extends AggregateEvent<CotizacionId> {
         this.analistaComercialId = analistaComercialId;
         this.diseñoPreliminarId = diseñoPreliminarId;
         this.clienteId = clienteId;
-        appendChange(new CotizacionCreada()).apply();
+        appendChange(new CotizacionCreada(entityId)).apply();
     }
 
     public void agregarCliente(ClienteId entityId, Direccion direccion, Nombre nombre) {

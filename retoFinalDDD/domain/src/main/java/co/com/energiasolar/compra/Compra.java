@@ -11,9 +11,12 @@ import java.util.Set;
 public class Compra extends AggregateEvent<CompraId> {
     protected Set<Proveedor> proveedores;
 
+    protected Set<Material> materiales;
+
     public Compra(CompraId entityId) {
         super(entityId);
         appendChange(new CompraCreada(entityId)).apply();
+        subscribe(new CompraChange(this));
     }
 
     public void agregarProveedor(ProveedorId entityId, Nombre nombre) {
@@ -71,5 +74,16 @@ public class Compra extends AggregateEvent<CompraId> {
 
     public Set<Proveedor> proveedores() {
         return proveedores;
+    }
+
+    protected Optional<Material> getMaterialPorId(MaterialId materialId) {
+        return materiales()
+                .stream()
+                .filter(material -> material.identity().equals(materialId))
+                .findFirst();
+    }
+
+    public Set<Material> materiales() {
+        return materiales;
     }
 }
