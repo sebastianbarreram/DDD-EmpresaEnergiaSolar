@@ -13,18 +13,18 @@ https://github.com/Sofka-XT/java-ddd-demo-dice
 ## Use Case/Problem
 Con base al conocimiento adquirido sobre DDD poner en evidencia el conocimiento y dominio adquirido de esta temática, para ello realizaremos lo siguiente:
 
-Se debe definir un problema cualquiera sobre el cual se planteara un Modelo de Dominio diferente al Pet Project.
-De manera individual se dará respuesta a la solución planteada expresada en el Modelo de Dominio y la librería de DDD.
+1. Se debe definir un problema cualquiera sobre el cual se planteara un Modelo de Dominio diferente al Pet Project.
+2. De manera individual se dará respuesta a la solución planteada expresada en el Modelo de Dominio y la librería de DDD.
 
 
 Se deben tener en cuenta la siguientes directrices:
 
-Se debe tener mínimo 3 agregado como mínimo
-Se debe tener mínimo 3 entidades como mínimo por cada agregado.
-Se debe tener mínimo 12 objetos de valor como mínimo
-Se debe tener mínimo 12 comportamientos con sus respectivos eventos de dominio y/o comandos
-Se debe tener mínimo 10 casos de uso disparados por comandos
-Se debe tener mínimo 2 casos de uso disparados por eventos
+1. Se debe tener mínimo 3 agregado como mínimo
+2. Se debe tener mínimo 3 entidades como mínimo por cada agregado.
+3. Se debe tener mínimo 12 objetos de valor como mínimo
+4. Se debe tener mínimo 12 comportamientos con sus respectivos eventos de dominio y/o comandos
+5. Se debe tener mínimo 10 casos de uso disparados por comandos
+6. Se debe tener mínimo 2 casos de uso disparados por eventos
 
 
 IMPORTENTE: Se debe tener un cubrimiento de pruebas unitarias para todos los casos de uso planteados, si no se hace pruebas unitarias al caso de uso se considera que no finalizo dicho caso de uso. Además no se puede utilizar el Pet Project como propuesta de modelo de dominio. 
