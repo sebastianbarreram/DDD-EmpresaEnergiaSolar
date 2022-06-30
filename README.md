@@ -38,7 +38,7 @@ Implementa el modelo de dominio con los agregados y todos sus comportamientos, c
 Implementar pruebas unitarias que cubran todos los casos de uso (100% de cubrimiento) | 15.0 %
 
 
-#Solución
+# Solución
 
 Se plantea una empresa de venta de sistemas solares fotovoltaicos. En esta se tienen los siguientes Subdominios:
 
