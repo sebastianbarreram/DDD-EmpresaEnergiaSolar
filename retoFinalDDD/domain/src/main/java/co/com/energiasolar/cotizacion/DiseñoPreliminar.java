@@ -28,11 +28,11 @@ public class DiseñoPreliminar extends Entity<DiseñoPreliminarId> {
         this.informacion = informacion;
     }
 
-    public Informacion Informacion() {
+    public Informacion informacion() {
         return informacion;
     }
 
-    public Precio Precio() {
+    public Precio precio() {
         return precio;
     }
 }

@@ -1,8 +1,6 @@
 package co.com.energiasolar.compra;
 
-import co.com.energiasolar.compra.values.MaterialId;
-import co.com.energiasolar.compra.values.Nombre;
-import co.com.energiasolar.compra.values.ProveedorId;
+import co.com.energiasolar.compra.values.*;
 import co.com.sofka.domain.generic.Entity;
 
 import java.util.Objects;
@@ -21,6 +19,7 @@ public class Proveedor extends Entity<ProveedorId> {
     public void cambiarNombre(Nombre nombre){
         this.nombre= Objects.requireNonNull(nombre);
     }
+
 
     protected Optional<Material> getMaterialPorId(MaterialId materialId) {
         return materiales()

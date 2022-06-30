@@ -19,7 +19,7 @@ public class AnalistaComercial extends Entity<AnalistaComercialId> {
         this.nombre=nombre;
     }
 
-    public Nombre Nombre() {
+    public Nombre nombre() {
         return nombre;
     }
 }
