@@ -3,7 +3,9 @@ package co.com.energiasolar.compra;
 import co.com.energiasolar.compra.events.*;
 import co.com.energiasolar.compra.values.*;
 import co.com.sofka.domain.generic.AggregateEvent;
+import co.com.sofka.domain.generic.DomainEvent;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
@@ -11,11 +13,17 @@ import java.util.Set;
 public class Compra extends AggregateEvent<CompraId> {
     protected Set<Proveedor> proveedores;
 
-
-    public Compra(CompraId entityId) {
+    private Compra(CompraId entityId) {
         super(entityId);
         appendChange(new CompraCreada(entityId)).apply();
         subscribe(new CompraChange(this));
+    }
+
+    //Para obtener un agregado que ya fue guardado
+    public static Compra from(CompraId entityId, List<DomainEvent> events) {
+        var compra = new Compra(entityId);
+        events.forEach(compra::applyEvent);
+        return compra;
     }
 
     public void agregarProveedor(ProveedorId entityId, Nombre nombre) {

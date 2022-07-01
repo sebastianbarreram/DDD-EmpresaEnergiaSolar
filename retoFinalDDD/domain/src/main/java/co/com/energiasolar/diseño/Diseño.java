@@ -6,7 +6,9 @@ import co.com.energiasolar.cotizacion.values.CotizacionId;
 import co.com.energiasolar.diseño.events.*;
 import co.com.energiasolar.diseño.values.*;
 import co.com.sofka.domain.generic.AggregateEvent;
+import co.com.sofka.domain.generic.DomainEvent;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
@@ -29,6 +31,12 @@ public class Diseño extends AggregateEvent<DiseñoId> {
         super(entityId);
         appendChange(new DiseñoCreado(entityId)).apply();
         subscribe(new DiseñoChange(this));
+    }
+
+    public static Diseño from(DiseñoId entityId, List<DomainEvent> events) {
+        var diseño = new Diseño(entityId);
+        events.forEach(diseño::applyEvent);
+        return diseño;
     }
 
     public void agregarAnalisisDeSombra(AnalisisDeSombraId entityId, Informacion informacion) {
@@ -72,15 +80,10 @@ public class Diseño extends AggregateEvent<DiseñoId> {
         appendChange(new ProyectoSolarAgregado(entityId, informacion)).apply();
     }
 
-
     public void cambiarSede(Sede sede) {
         Objects.requireNonNull(sede);
         appendChange(new SedeCambiada(sede)).apply();
     }
-
-
-
-
 
     protected Optional<Compra> getCompraPorId(CompraId compraId) {
         return compras()

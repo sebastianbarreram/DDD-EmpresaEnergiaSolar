@@ -1,10 +1,14 @@
 package co.com.energiasolar.cotizacion;
 
+import co.com.energiasolar.compra.Compra;
 import co.com.energiasolar.compra.events.CompraCreada;
+import co.com.energiasolar.compra.values.CompraId;
 import co.com.energiasolar.cotizacion.events.*;
 import co.com.energiasolar.cotizacion.values.*;
 import co.com.sofka.domain.generic.AggregateEvent;
+import co.com.sofka.domain.generic.DomainEvent;
 
+import java.util.List;
 import java.util.Objects;
 
 public class Cotizacion extends AggregateEvent<CotizacionId> {
@@ -24,6 +28,12 @@ public class Cotizacion extends AggregateEvent<CotizacionId> {
         super(entityId);
         appendChange(new CotizacionCreada(entityId)).apply();
         subscribe(new CotizacionChange(this));
+    }
+
+    public static Cotizacion from(CotizacionId entityId, List<DomainEvent> events) {
+        var cotizacion = new Cotizacion(entityId);
+        events.forEach(cotizacion::applyEvent);
+        return cotizacion;
     }
 
     public void agregarAnalistaComercial(AnalistaComercialId entityId, Nombre nombre) {
