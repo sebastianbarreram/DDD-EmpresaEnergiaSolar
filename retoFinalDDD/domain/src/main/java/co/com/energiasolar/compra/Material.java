@@ -24,4 +24,20 @@ public class Material extends Entity<MaterialId> {
     public void cambiarDescripcion(Descripcion descripcion){
         this.descripcion= Objects.requireNonNull(descripcion);
     }
+
+    public Precio precio() {
+        return precio;
+    }
+
+    public Descripcion descripcion() {
+        return descripcion;
+    }
+
+    public void actualizarPrecio(Precio precio) {
+        this.precio = precio;
+    }
+
+    public void actualizarDescripcion(Descripcion descripcion) {
+        this.descripcion = descripcion;
+    }
 }

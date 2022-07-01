@@ -11,4 +11,8 @@ public class Ingeniero extends Entity<IngenieroId> {
         super(entityId);
         this.nombre = nombre;
     }
+
+    public void actualizarNombre(Nombre nombre) {
+        this.nombre = nombre;
+    }
 }

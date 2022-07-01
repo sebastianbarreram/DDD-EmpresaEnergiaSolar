@@ -23,49 +23,76 @@ public class Diseño extends AggregateEvent<DiseñoId> {
         this.cotizacionId = cotizacionId;
         this.compras = compras;
         this.sede = sede;
-        appendChange(new DiseñoCreado(entityId,cotizacionId,sede)).apply();
     }
 
-    public void agregarIngeniero(IngenieroId entityId, Nombre nombre){
+    private Diseño(DiseñoId entityId) {
+        super(entityId);
+        appendChange(new DiseñoCreado(entityId)).apply();
+        subscribe(new DiseñoChange(this));
+    }
+
+    public void agregarAnalisisDeSombra(AnalisisDeSombraId entityId, Informacion informacion) {
         Objects.requireNonNull(entityId);
-        Objects.requireNonNull(nombre);
-        appendChange(new IngenieroCreado(entityId,nombre)).apply();
+        Objects.requireNonNull(informacion);
+        appendChange(new AnalisisDeSombraAgregado(entityId, informacion)).apply();
     }
 
-    public void cambiarSede(Sede sede){
-        Objects.requireNonNull(sede);
-        appendChange(new SedeCambiada(sede)).apply();
-    }
-
-    public void asociarCotizacion(CotizacionId cotizacionId){
+    public void asociarCotizacion(CotizacionId cotizacionId) {
         Objects.requireNonNull(cotizacionId);
         appendChange(new CotizacionAsociada(cotizacionId)).apply();
     }
 
-    public void actualizarInformacionDeUnAnalisisDeSombra(AnalisisDeSombraId entityId, Informacion informacion){
+    public void actualizarInformacionDeUnAnalisisDeSombra(AnalisisDeSombraId entityId, Informacion informacion) {
         Objects.requireNonNull(entityId);
         Objects.requireNonNull(informacion);
         appendChange(new InformacionDeUnAnalisisDeSombraActualizada(entityId, informacion)).apply();
     }
 
-    public void actualizarNombreDeUnIngeniero(IngenieroId entityId, Nombre nombre){
-        Objects.requireNonNull(entityId);
-        Objects.requireNonNull(nombre);
-        appendChange(new NombreDeUnIngenieroActualizado(entityId,nombre)).apply();
-
-    }
-
-    public void actualizarInformacionDeUnProyectoSolar(ProyectoSolarId entityId, Informacion informacion){
+    public void actualizarInformacionDeUnProyectoSolar(ProyectoSolarId entityId, Informacion informacion) {
         Objects.requireNonNull(entityId);
         Objects.requireNonNull(informacion);
-        appendChange(new InformacionDeUnProyectoSolarActualizada(entityId,informacion)).apply();
-
+        appendChange(new InformacionDeUnProyectoSolarActualizada(entityId, informacion)).apply();
     }
+    
+    public void agregarIngeniero(IngenieroId entityId, Nombre nombre) {
+        Objects.requireNonNull(entityId);
+        Objects.requireNonNull(nombre);
+        appendChange(new IngenieroAgregado(entityId, nombre)).apply();
+    }
+
+    public void actualizarNombreDeUnIngeniero(IngenieroId entityId, Nombre nombre) {
+        Objects.requireNonNull(entityId);
+        Objects.requireNonNull(nombre);
+        appendChange(new NombreDeUnIngenieroActualizado(entityId, nombre)).apply();
+    }
+
+    public void agregarProyectoSolar(ProyectoSolarId entityId, Informacion informacion) {
+        Objects.requireNonNull(entityId);
+        Objects.requireNonNull(informacion);
+        appendChange(new ProyectoSolarAgregado(entityId, informacion)).apply();
+    }
+
+
+    public void cambiarSede(Sede sede) {
+        Objects.requireNonNull(sede);
+        appendChange(new SedeCambiada(sede)).apply();
+    }
+
+
+
+
 
     protected Optional<Compra> getCompraPorId(CompraId compraId) {
         return compras()
                 .stream()
-                .filter(material -> material.identity().equals(compraId))
+                .filter(compra -> compra.identity().equals(compraId))
+                .findFirst();
+    }
+
+    protected Optional<Ingeniero> getIngenieroPorId(IngenieroId ingenieroId) {
+        return ingenieros()
+                .stream()
+                .filter(ingeniero -> ingeniero.identity().equals(ingenieroId))
                 .findFirst();
     }
 

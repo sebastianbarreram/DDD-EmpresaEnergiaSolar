@@ -51,9 +51,5 @@ v
 Fdomain/src/main/java/co/com/energiasolar/diseño/AnalisisDeSombra.java,7\a\7a12417439b2db787e8e6311e4f0d7ae23564970
 s
 Cdomain/src/main/java/co/com/energiasolar/diseño/ProyectoSolar.java,c\4\c4e9e8cd50f9c5062d93e60699de6dfd1e5c1b67
-o
-?domain/src/main/java/co/com/energiasolar/diseño/Ingeniero.java,c\2\c221dda94125808b8ef3fe173f16c87fe5f86d27
 p
 @domain/src/main/java/co/com/energiasolar/cotizacion/Cliente.java,1\4\1465a75fb4b41a38398194ef65f40dc01034bd90
-m
-=domain/src/main/java/co/com/energiasolar/diseño/Diseño.java,b\7\b747f6517725243974c437e2e621ec553ac9479e

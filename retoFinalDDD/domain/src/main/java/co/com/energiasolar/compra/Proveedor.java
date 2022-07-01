@@ -16,8 +16,28 @@ public class Proveedor extends Entity<ProveedorId> {
         this.nombre = nombre;
     }
 
-    public void cambiarNombre(Nombre nombre){
-        this.nombre= Objects.requireNonNull(nombre);
+    public void cambiarNombre(Nombre nombre) {
+        this.nombre = Objects.requireNonNull(nombre);
+    }
+
+    public void agregarMaterial(MaterialId entityId, Precio precio, Descripcion descripcion) {
+        this.materiales.add(new Material(
+                entityId,
+                precio,
+                descripcion
+        ));
+    }
+
+    public void cambiarDescripcionDeUnMaterial(MaterialId entityId, Descripcion descripcion) {
+        var material=getMaterialPorId(entityId)
+                .orElseThrow(() -> new IllegalArgumentException("No se encuentra el material del proveedor"));
+        material.actualizarDescripcion(descripcion);
+    }
+
+    public void cambiarPrecioDeUnMaterial(MaterialId entityId, Precio precio) {
+        var material=getMaterialPorId(entityId)
+                .orElseThrow(() -> new IllegalArgumentException("No se encuentra el material del proveedor"));
+        material.actualizarPrecio(precio);
     }
 
 

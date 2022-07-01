@@ -20,11 +20,29 @@ public class Cotizacion extends AggregateEvent<CotizacionId> {
         appendChange(new CotizacionCreada(entityId)).apply();
     }
 
+    private Cotizacion(CotizacionId entityId){
+        super(entityId);
+        appendChange(new CotizacionCreada(entityId)).apply();
+        subscribe(new CotizacionChange(this));
+    }
+
+    public void agregarAnalistaComercial(AnalistaComercialId entityId, Nombre nombre) {
+        Objects.requireNonNull(entityId);
+        Objects.requireNonNull(nombre);
+        appendChange(new AnalistaComercialAgregado(entityId, nombre)).apply();
+    }
+
     public void agregarCliente(ClienteId entityId, Direccion direccion, Nombre nombre) {
         Objects.requireNonNull(entityId);
         Objects.requireNonNull(direccion);
         Objects.requireNonNull(nombre);
         appendChange(new ClienteAgregado(entityId, direccion, nombre)).apply();
+    }
+
+    public void actualizarDireccionDeUnCliente(ClienteId entityId, Direccion direccion) {
+        Objects.requireNonNull(entityId);
+        Objects.requireNonNull(direccion);
+        appendChange(new DireccionDeUnClienteActualizada(entityId, direccion)).apply();
     }
 
     public void agregarDiseñoPreliminar(DiseñoPreliminarId entityId, Precio precio, Informacion informacion) {
@@ -34,28 +52,16 @@ public class Cotizacion extends AggregateEvent<CotizacionId> {
         appendChange(new DiseñoPreliminarAgregado(entityId, precio, informacion)).apply();
     }
 
-    public void agregarAnalistaComercial(AnalistaComercialId entityId, Nombre nombre) {
-        Objects.requireNonNull(entityId);
-        Objects.requireNonNull(nombre);
-        appendChange(new AnalistaComercialAgregado(entityId, nombre)).apply();
-    }
-
-    public void actualizarNombreDeUnCliente(ClienteId entityId, Nombre nombre) {
-        Objects.requireNonNull(entityId);
-        Objects.requireNonNull(nombre);
-        appendChange(new NombreDeUnClienteActualizado(entityId, nombre)).apply();
-    }
-
-    public void actualizarDireccionDeUnCliente(ClienteId entityId, Direccion direccion) {
-        Objects.requireNonNull(entityId);
-        Objects.requireNonNull(direccion);
-        appendChange(new DireccionDeUnClienteActualizada(entityId, direccion)).apply();
-    }
-
     public void actualizarNombreDeUnAnalistaComercial(AnalistaComercialId entityId, Nombre nombre) {
         Objects.requireNonNull(entityId);
         Objects.requireNonNull(nombre);
         appendChange(new NombreDeUnaAnalistaComercialActualizado(entityId, nombre)).apply();
+    }
+
+    public void actualizarNombreDeUnCliente(ClienteId entityId,Nombre nombre){
+        Objects.requireNonNull(entityId);
+        Objects.requireNonNull(nombre);
+        appendChange(new NombreDeUnClienteActualizado(entityId, nombre)).apply();
     }
 
     public void actualizarPrecioDeUnDiseñoPreliminar(DiseñoPreliminarId entityId,Precio precio) {

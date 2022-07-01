@@ -11,7 +11,6 @@ import java.util.Set;
 public class Compra extends AggregateEvent<CompraId> {
     protected Set<Proveedor> proveedores;
 
-    protected Set<Material> materiales;
 
     public Compra(CompraId entityId) {
         super(entityId);
@@ -35,14 +34,6 @@ public class Compra extends AggregateEvent<CompraId> {
         Objects.requireNonNull(entityId);
         Objects.requireNonNull(nombre);
         appendChange(new NombreDeUnPorveedorActualizado(entityId, nombre)).apply();
-    }
-
-    public void agregarMaterialDeUnProveedor(ProveedorId proveedorId, MaterialId entityId, Precio precio, Descripcion descripcion) {
-        Objects.requireNonNull(proveedorId);
-        Objects.requireNonNull(entityId);
-        Objects.requireNonNull(precio);
-        Objects.requireNonNull(descripcion);
-        appendChange(new MaterialDeUnProveedorAgregado(proveedorId, entityId, precio, descripcion)).apply();
     }
 
     public void actualizarPrecioDeUnMaterial(ProveedorId proveedorId, MaterialId entityId, Precio precio) {
@@ -74,16 +65,5 @@ public class Compra extends AggregateEvent<CompraId> {
 
     public Set<Proveedor> proveedores() {
         return proveedores;
-    }
-
-    protected Optional<Material> getMaterialPorId(MaterialId materialId) {
-        return materiales()
-                .stream()
-                .filter(material -> material.identity().equals(materialId))
-                .findFirst();
-    }
-
-    public Set<Material> materiales() {
-        return materiales;
     }
 }

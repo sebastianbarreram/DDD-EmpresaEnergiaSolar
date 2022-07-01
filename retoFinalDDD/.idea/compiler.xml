@@ -7,16 +7,10 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="retoFinalDDD (1) (co.com.energiasolar)" />
-        <module name="retoFinalDDD (1)" />
-      </profile>
-      <profile name="Annotation profile for retoFinalDDD" enabled="true">
-        <sourceOutputDir name="business/target/generated-sources/annotations" />
-        <sourceTestOutputDir name="business/target/generated-test-sources/test-annotations" />
-        <outputRelativeToContentRoot value="true" />
-        <module name="retoFinalDDD" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="retoFinalDDD (1)" target="1.8" />
       <module name="retoFinalDDD (2)" target="1.8" />
     </bytecodeTargetLevel>
   </component>
