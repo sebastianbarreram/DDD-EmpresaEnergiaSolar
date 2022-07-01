@@ -2,6 +2,7 @@ package co.com.energiasolar.diseño;
 
 import co.com.energiasolar.compra.Compra;
 import co.com.energiasolar.compra.values.CompraId;
+import co.com.energiasolar.cotizacion.events.CotizacionCreada;
 import co.com.energiasolar.cotizacion.values.CotizacionId;
 import co.com.energiasolar.diseño.events.*;
 import co.com.energiasolar.diseño.values.*;
@@ -20,16 +21,13 @@ public class Diseño extends AggregateEvent<DiseñoId> {
 
     protected Set<Ingeniero> ingenieros;
 
-    public Diseño(DiseñoId entityId, CotizacionId cotizacionId, Sede sede) {
+    public Diseño(DiseñoId entityId, Sede sede) {
         super(entityId);
-        this.cotizacionId = cotizacionId;
-        this.compras = compras;
-        this.sede = sede;
+        appendChange(new DiseñoCreado(sede)).apply();
     }
 
     private Diseño(DiseñoId entityId) {
         super(entityId);
-        appendChange(new DiseñoCreado(entityId)).apply();
         subscribe(new DiseñoChange(this));
     }
 
@@ -61,7 +59,7 @@ public class Diseño extends AggregateEvent<DiseñoId> {
         Objects.requireNonNull(informacion);
         appendChange(new InformacionDeUnProyectoSolarActualizada(entityId, informacion)).apply();
     }
-    
+
     public void agregarIngeniero(IngenieroId entityId, Nombre nombre) {
         Objects.requireNonNull(entityId);
         Objects.requireNonNull(nombre);

@@ -11,6 +11,7 @@ public class DiseñoChange extends EventChange {
     public DiseñoChange(Diseño diseño) {
         apply((DiseñoCreado envent) -> {
             diseño.compras = new HashSet<>();
+            diseño.sede=envent.getSede();
         });
 
         apply((AnalisisDeSombraAgregado event)->{
