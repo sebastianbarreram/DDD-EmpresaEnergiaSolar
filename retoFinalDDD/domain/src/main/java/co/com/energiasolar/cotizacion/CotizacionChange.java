@@ -54,6 +54,12 @@ public class CotizacionChange extends EventChange {
                     event.getPrecio());
         });
 
+        apply((InformacionDeUnDiseñoPreliminarActualizada event) -> {
+            cotizacion.actualizarInformacionDeUnDiseñoPreliminar(
+                    event.getEntityId(),
+                    event.getInformacion());
+        });
+
 
     }
 }

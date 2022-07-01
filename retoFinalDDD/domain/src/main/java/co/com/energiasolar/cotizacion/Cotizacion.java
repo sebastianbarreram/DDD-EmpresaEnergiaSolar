@@ -80,9 +80,11 @@ public class Cotizacion extends AggregateEvent<CotizacionId> {
         appendChange(new PrecioDeUnDiseñoPreliminarActualizado(entityId, precio)).apply();
     }
 
-
-
-
+    public void actualizarInformacionDeUnDiseñoPreliminar(DiseñoPreliminarId entityId,Informacion informacion){
+        Objects.requireNonNull(entityId);
+        Objects.requireNonNull(informacion);
+        appendChange(new InformacionDeUnDiseñoPreliminarActualizada(entityId,informacion)).apply();
+    }
 
     public AnalistaComercialId analistaComercialId() {
         return analistaComercialId;
