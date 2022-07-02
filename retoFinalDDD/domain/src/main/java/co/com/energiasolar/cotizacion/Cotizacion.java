@@ -16,15 +16,7 @@ public class Cotizacion extends AggregateEvent<CotizacionId> {
     protected DiseñoPreliminarId diseñoPreliminarId;
     protected ClienteId clienteId;
 
-    public Cotizacion(CotizacionId entityId, AnalistaComercialId analistaComercialId, DiseñoPreliminarId diseñoPreliminarId, ClienteId clienteId) {
-        super(entityId);
-        this.analistaComercialId = analistaComercialId;
-        this.diseñoPreliminarId = diseñoPreliminarId;
-        this.clienteId = clienteId;
-        appendChange(new CotizacionCreada(entityId)).apply();
-    }
-
-    private Cotizacion(CotizacionId entityId){
+    public Cotizacion(CotizacionId entityId){
         super(entityId);
         appendChange(new CotizacionCreada(entityId)).apply();
         subscribe(new CotizacionChange(this));
@@ -42,11 +34,12 @@ public class Cotizacion extends AggregateEvent<CotizacionId> {
         appendChange(new AnalistaComercialAgregado(entityId, nombre)).apply();
     }
 
-    public void agregarCliente(ClienteId entityId, Direccion direccion, Nombre nombre) {
-        Objects.requireNonNull(entityId);
+    public void agregarCliente(ClienteId entityId,Direccion direccion,Nombre nombre, CotizacionId cotizacionId) {
         Objects.requireNonNull(direccion);
+        Objects.requireNonNull(entityId);
         Objects.requireNonNull(nombre);
-        appendChange(new ClienteAgregado(entityId, direccion, nombre)).apply();
+        Objects.requireNonNull(cotizacionId);
+        appendChange(new ClienteAgregado(entityId,direccion,nombre,cotizacionId)).apply();
     }
 
     public void actualizarDireccionDeUnCliente(ClienteId entityId, Direccion direccion) {

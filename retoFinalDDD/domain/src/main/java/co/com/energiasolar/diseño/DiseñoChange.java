@@ -12,6 +12,7 @@ public class DiseñoChange extends EventChange {
         apply((DiseñoCreado envent) -> {
             diseño.compras = new HashSet<>();
             diseño.sede=envent.getSede();
+            diseño.ingenieros=new HashSet<>();
         });
 
         apply((AnalisisDeSombraAgregado event)->{
@@ -35,10 +36,11 @@ public class DiseñoChange extends EventChange {
         });
 
         apply((IngenieroAgregado event)->{
-            diseño.ingenieros.add(new Ingeniero(
+            diseño.agregarIngenieros((new Ingeniero(
                     event.getEntityId(),
-                    event.getNombre()
-            ));
+                    event.getNombre(),
+                    event.getDiseñoId()
+            )));
         });
 
         apply((NombreDeUnIngenieroActualizado event)->{

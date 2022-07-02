@@ -2,7 +2,6 @@ package co.com.energiasolar.diseño;
 
 import co.com.energiasolar.compra.Compra;
 import co.com.energiasolar.compra.values.CompraId;
-import co.com.energiasolar.cotizacion.events.CotizacionCreada;
 import co.com.energiasolar.cotizacion.values.CotizacionId;
 import co.com.energiasolar.diseño.events.*;
 import co.com.energiasolar.diseño.values.*;
@@ -23,7 +22,7 @@ public class Diseño extends AggregateEvent<DiseñoId> {
 
     public Diseño(DiseñoId entityId, Sede sede) {
         super(entityId);
-        appendChange(new DiseñoCreado(sede)).apply();
+        appendChange(new DiseñoCreado(entityId,sede)).apply();
     }
 
     private Diseño(DiseñoId entityId) {
@@ -43,9 +42,9 @@ public class Diseño extends AggregateEvent<DiseñoId> {
         appendChange(new AnalisisDeSombraAgregado(entityId, informacion)).apply();
     }
 
-    public void asociarCotizacion(CotizacionId cotizacionId) {
+    public void asociarCotizacion(CotizacionId cotizacionId, DiseñoId diseñoId) {
         Objects.requireNonNull(cotizacionId);
-        appendChange(new CotizacionAsociada(cotizacionId)).apply();
+        appendChange(new CotizacionAsociada(cotizacionId,diseñoId)).apply();
     }
 
     public void actualizarInformacionDeUnAnalisisDeSombra(AnalisisDeSombraId entityId, Informacion informacion) {
@@ -60,10 +59,11 @@ public class Diseño extends AggregateEvent<DiseñoId> {
         appendChange(new InformacionDeUnProyectoSolarActualizada(entityId, informacion)).apply();
     }
 
-    public void agregarIngeniero(IngenieroId entityId, Nombre nombre) {
+    public void agregarIngeniero(IngenieroId entityId, Nombre nombre,DiseñoId diseñoId) {
         Objects.requireNonNull(entityId);
         Objects.requireNonNull(nombre);
-        appendChange(new IngenieroAgregado(entityId, nombre)).apply();
+        Objects.requireNonNull(diseñoId);
+        appendChange(new IngenieroAgregado(entityId, nombre,diseñoId)).apply();
     }
 
     public void actualizarNombreDeUnIngeniero(IngenieroId entityId, Nombre nombre) {
@@ -75,7 +75,7 @@ public class Diseño extends AggregateEvent<DiseñoId> {
     public void agregarProyectoSolar(ProyectoSolarId entityId, Informacion informacion) {
         Objects.requireNonNull(entityId);
         Objects.requireNonNull(informacion);
-        appendChange(new ProyectoSolarAgregado(entityId, informacion)).apply();
+        appendChange(new ProyectoSolarAgregado(entityId, informacion, DiseñoId.of("12"))).apply();
     }
 
     public void cambiarSede(Sede sede) {
@@ -111,6 +111,11 @@ public class Diseño extends AggregateEvent<DiseñoId> {
     }
 
     public Set<Ingeniero> ingenieros() {
+        return ingenieros;
+    }
+
+    public Set<Ingeniero> agregarIngenieros(Ingeniero ingeniero){
+        this.ingenieros.add(ingeniero);
         return ingenieros;
     }
 }

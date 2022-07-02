@@ -1,31 +1,37 @@
 package co.com.energiasolar.cotizacion.commands;
 
-import co.com.energiasolar.cotizacion.values.AnalistaComercialId;
-import co.com.energiasolar.cotizacion.values.ClienteId;
-import co.com.energiasolar.cotizacion.values.Direccion;
-import co.com.energiasolar.cotizacion.values.Nombre;
+import co.com.energiasolar.cotizacion.values.*;
 import co.com.sofka.domain.generic.Command;
 
 public class AgregarCliente extends Command {
     private final ClienteId entityId;
-    private final Direccion direccion;
-    private final Nombre nombre;
 
-    public AgregarCliente(ClienteId entityId, Direccion direccion, Nombre nombre) {
+    private final CotizacionId cotizacionId;
+    private final Nombre nombre;
+    private final Direccion direccion;
+
+    public AgregarCliente(ClienteId entityId,Direccion direccion,Nombre nombre, CotizacionId cotizacionId) {
         this.entityId = entityId;
-        this.direccion = direccion;
         this.nombre = nombre;
+        this.direccion = direccion;
+        this.cotizacionId = cotizacionId;
+    }
+
+
+
+    public ClienteId getEntityId() {
+        return entityId;
     }
 
     public Nombre getNombre() {
         return nombre;
     }
 
-    public ClienteId getEntityId() {
-        return entityId;
-    }
-
     public Direccion getDireccion() {
         return direccion;
+    }
+
+    public CotizacionId getCotizacionId() {
+        return cotizacionId;
     }
 }

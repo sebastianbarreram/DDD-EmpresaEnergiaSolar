@@ -1,6 +1,7 @@
 package co.com.energiasolar.cotizacion;
 
 import co.com.energiasolar.cotizacion.values.ClienteId;
+import co.com.energiasolar.cotizacion.values.CotizacionId;
 import co.com.energiasolar.cotizacion.values.Direccion;
 import co.com.energiasolar.cotizacion.values.Nombre;
 import co.com.sofka.domain.generic.Entity;
@@ -11,7 +12,7 @@ public class Cliente extends Entity<ClienteId> {
     private Direccion direccion;
     private Nombre nombre;
 
-    public Cliente(ClienteId entityId, Direccion direccion, Nombre nombre) {
+    public Cliente(ClienteId entityId, Direccion direccion, Nombre nombre, CotizacionId cotizacionId) {
         super(entityId);
         this.direccion = direccion;
         this.nombre = nombre;

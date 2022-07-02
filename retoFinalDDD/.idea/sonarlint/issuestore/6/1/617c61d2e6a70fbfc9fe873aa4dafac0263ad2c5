@@ -1,0 +1,9 @@
+
+m	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÄÃ¢Ñ8µÇ»â›0
+g	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(…Ý¤éøÿÿÿÿ
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Öê°óøÿÿÿÿ
+u	java:S116
+"TRename this field "diseÃ±oId" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ûÉéÈøÿÿÿÿ8³³¼â›0
+o	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(œµÉ úÿÿÿÿ8–Ù¼â›0
+q
+java:S1128"ORemove this unused import 'co.com.energiasolar.cotizacion.values.CotizacionId'.(ð …¬úÿÿÿÿ8·³¼â›0

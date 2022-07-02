@@ -11,13 +11,12 @@ import co.com.sofka.business.support.ResponseEvents;
 public class AgregarIngenieroUseCase extends UseCase<RequestCommand<AgregarIngeniero>, ResponseEvents> {
     @Override
     public void executeUseCase(RequestCommand<AgregarIngeniero> agregarIngenieroRequestCommand) {
-//        var command = agregarIngenieroRequestCommand.getCommand();
-//        var diseño=new Diseño(new DiseñoId(),);
-//        var ingeniero= new Ingeniero(
-//                command.getEntityId(),
-//                command.getNombre()
-//        );
-//
-//        emit().onResponse(new ResponseEvents(ingeniero.getUncommittedChanges()));
+        var command = agregarIngenieroRequestCommand.getCommand();
+        var diseño=Diseño.from(
+                command.getDiseñoId(),repository().getEventsBy(command.getDiseñoId().value())
+        );
+        diseño.agregarIngeniero(command.getEntityId(),command.getNombre(),command.getDiseñoId());
+
+        emit().onResponse(new ResponseEvents(diseño.getUncommittedChanges()));
     }
 }

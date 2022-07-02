@@ -11,7 +11,7 @@ public class Proveedor extends Entity<ProveedorId> {
     private Nombre nombre;
     private Set<Material> materiales;
 
-    public Proveedor(ProveedorId entityId, Nombre nombre) {
+    public Proveedor(ProveedorId entityId, Nombre nombre, CompraId compraId) {
         super(entityId);
         this.nombre = nombre;
     }

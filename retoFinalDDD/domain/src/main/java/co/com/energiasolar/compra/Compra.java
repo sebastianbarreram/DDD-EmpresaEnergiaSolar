@@ -13,7 +13,7 @@ import java.util.Set;
 public class Compra extends AggregateEvent<CompraId> {
     protected Set<Proveedor> proveedores;
 
-    private Compra(CompraId entityId) {
+    public Compra(CompraId entityId) {
         super(entityId);
         appendChange(new CompraCreada(entityId)).apply();
         subscribe(new CompraChange(this));
@@ -26,10 +26,11 @@ public class Compra extends AggregateEvent<CompraId> {
         return compra;
     }
 
-    public void agregarProveedor(ProveedorId entityId, Nombre nombre) {
+    public void agregarProveedor(ProveedorId entityId, Nombre nombre,CompraId compraId) {
         Objects.requireNonNull(entityId);
         Objects.requireNonNull(nombre);
-        appendChange(new ProveedorAgregado(entityId, nombre)).apply();
+        Objects.requireNonNull(compraId);
+        appendChange(new ProveedorAgregado(entityId, nombre,compraId)).apply();
     }
 
     public void agregarAnalistaCompras(AnalistaComprasId entityId, Nombre nombre) {

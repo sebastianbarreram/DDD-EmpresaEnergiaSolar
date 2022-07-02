@@ -54,7 +54,8 @@ public class CompraChange extends EventChange {
         apply((ProveedorAgregado event)->{
             compra.proveedores.add(new Proveedor(
                     event.getEntityId(),
-                    event.getNombre()
+                    event.getNombre(),
+                    event.getCompraId()
             ));
         });
     }

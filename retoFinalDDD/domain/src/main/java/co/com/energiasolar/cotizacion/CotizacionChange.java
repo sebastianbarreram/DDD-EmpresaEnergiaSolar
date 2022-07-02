@@ -18,7 +18,8 @@ public class CotizacionChange extends EventChange {
             cotizacion.agregarCliente(
                     event.getEntityId(),
                     event.getDireccion(),
-                    event.getNombre()
+                    event.getNombre(),
+                    event.getCotizacionId()
             );
         });
 
